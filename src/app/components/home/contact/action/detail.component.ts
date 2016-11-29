@@ -30,7 +30,12 @@ export class DetailComponent implements OnInit {
     }
 
     loadDetail() {
-        return this.contactService.getDetail(this.params['id']).subscribe(response => this.data = response.data);
+        return this.contactService.getDetail(this.params['id']).subscribe(response => {
+            if (response.data.photo != null && response.data.photo.indexOf('http') < 0) {
+                response.data.photo = 'http://static2.fastcard.vn/customer/' + response.data.photo;
+            }
+            this.data = response.data;
+        });
     }
 
     fileChange(event) {

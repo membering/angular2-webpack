@@ -28,7 +28,8 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
-  HMR: false
+  HMR: false,
+  apiUrl: 'http://api.fastcard.vn'
 });
 
 module.exports = function (env) {
@@ -124,6 +125,7 @@ module.exports = function (env) {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
           'HMR': METADATA.HMR,
+          'apiUrl': JSON.stringify(METADATA.apiUrl)
         }
       }),
 

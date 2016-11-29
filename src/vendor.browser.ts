@@ -21,8 +21,8 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-import 'jquery';
 import 'bootstrap';
+import 'remarkable-bootstrap-notify/dist/bootstrap-notify.js';
 import 'assets/js/custom.js';
 
 if ('production' === ENV) {

@@ -2,6 +2,7 @@
  * @author: @AngularClass
  */
 
+const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers');
 
@@ -77,7 +78,11 @@ module.exports = function (options) {
       extensions: ['.ts', '.js', '.json'],
 
       // An array of directory names to be resolved to the current directory
-      modules: [helpers.root('src'), helpers.root('node_modules')],
+      modules: [helpers.root('src'), helpers.root('node_modules'), helpers.root('bower_components')],
+
+      alias: {
+        'jquery': helpers.root('bower_components/jquery/src/jquery')
+      }
     },
 
     /*
@@ -124,7 +129,15 @@ module.exports = function (options) {
          */
         {
           test: /\.css$/,
-          use: ['to-string-loader', 'css-loader']
+          use: ['to-string-loader', 'style-loader', 'css-loader']
+        },
+        {
+          test: /\.less$/,
+          use: ['to-string-loader', 'style-loader', 'css-loader', 'less-loader']
+        },
+        {
+          test: /\.(scss|sass)$/,
+          use: ['to-string-loader', 'style-loader', 'css-loader', 'sass-loader']
         },
 
         /* Raw loader support for *.html
@@ -148,10 +161,6 @@ module.exports = function (options) {
           test: /\.(woff|svg|ttf|eot)([\?]?.*)$/,
           use: "file-loader?name=[name].[ext]"
         },
-        {
-          test: /[\/\\]node_modules[\/\\]jquery[\/\\]index\.js$/,
-          loader: "imports?this=>window"
-        }
       ],
 
     },
@@ -164,9 +173,7 @@ module.exports = function (options) {
     plugins: [
       new webpack.ProvidePlugin({
         jQuery: 'jquery',
-        $: 'jquery',
-        jquery: 'jquery',
-        'windows.jQuery': 'jquery'
+        $: 'jquery'
       }),
 
       new AssetsPlugin({

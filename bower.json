@@ -1,0 +1,15 @@
+{
+  "name": "FC-Supplier",
+  "version": "1.0.0",
+  "license": "FAKA",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "remarkable-bootstrap-notify": "^3.1.3"
+  }
+}
